@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f2f2f2;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 320px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    table {
+      margin: 20px auto;
+      width: 90%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h2>Student Registration Form</h2>
+
+  <form id="studentForm">
+    <label for="fullname">Full Name:</label>
+    <input type="text" id="fullname">
+    <small class="error" id="fullnameError"></small>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email">
+    <small class="error" id="emailError"></small>
+
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone">
+    <small class="error" id="phoneError"></small>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob">
+    <small class="error" id="dobError"></small>
+
+    <label for="gender">Gender:</label>
+    <select id="gender">
+      <option value="">Select</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+    <small class="error" id="genderError"></small>
+
+    <label for="course">Course:</label>
+    <input type="text" id="course">
+    <small class="error" id="courseError"></small>
+
+    <label for="address">Address:</label>
+    <textarea id="address" rows="3"></textarea>
+    <small class="error" id="addressError"></small>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <table id="studentTable">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>DOB</th>
+        <th>Gender</th>
+        <th>Course</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will be added here -->
+    </tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('studentForm');
+    const tableBody = document.querySelector('#studentTable tbody');
+
+    // Error elements
+    const fullnameError = document.getElementById('fullnameError');
+    const emailError = document.getElementById('emailError');
+    const phoneError = document.getElementById('phoneError');
+    const dobError = document.getElementById('dobError');
+    const genderError = document.getElementById('genderError');
+    const courseError = document.getElementById('courseError');
+    const addressError = document.getElementById('addressError');
+
+    // Validate form inputs
+    function validateForm(fullname, email, phone, dob, gender, course, address) {
+      let isValid = true;
+      const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+      const phonePattern = /^[0-9]{10}$/;
+
+      if (fullname.trim() === "") {
+        fullnameError.textContent = "Full Name is required";
+        isValid = false;
+      } else fullnameError.textContent = "";
+
+      if (!emailPattern.test(email)) {
+        emailError.textContent = "Enter a valid email";
+        isValid = false;
+      } else emailError.textContent = "";
+
+      if (!phonePattern.test(phone)) {
+        phoneError.textContent = "Enter 10-digit phone number";
+        isValid = false;
+      } else phoneError.textCont
